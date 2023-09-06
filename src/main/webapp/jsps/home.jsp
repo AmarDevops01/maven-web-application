@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> MithunTechnologies- Home Page -- POLL SCM option </title>
+<title> MithunTechnologies- Home Page  </title>
 <link href="images/mithunlogo.jpg" rel="icon">
 </head>
 <body>
-<h1 align="center">Welcome to Amaresh Technologies Pvt Ltd. Ph No: +91-9980923226  Marathahalli,Bengaluru,Karnataka </h1>
+<h1 align="center">Welcome to Amaresh Technologies Pvt Ltd. -- Github Webhook -- Ph No: +91-9980923226  Marathahalli,Bengaluru,Karnataka </h1>
 <h1 align="center"> Amaresh Technologies- Very Good Training center for DevOps with AWS in Bangalore India and also for Job Assitance Job Support also...Teaching Real Time scnerios</h1>
 <hr>
 <br>
