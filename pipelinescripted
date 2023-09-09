@@ -1,0 +1,28 @@
+
+node{ 
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([cron('* * * * * ')])])
+    def mavenHome = tool name: 'maven 3.8.6'//variable declaration for maven homepath
+    
+    stage('CheckOutCode'){
+        git branch: 'Dev', credentialsId: '0228e0bc-f62a-47e5-a5ef-e4e845025812', url: 'https://github.com/AmarDevops01/maven-web-application.git'
+    }//stage closing
+    
+    stage('Build'){
+        sh "$mavenHome/bin/mvn clean package"
+    }
+    
+    stage('ExecutingSonarQubeReport'){
+        sh "$mavenHome/bin/mvn sonar:sonar"
+    }
+    
+    stage('UploadingArtifactIDintoNexus'){
+        sh "$mavenHome/bin/mvn deploy"
+    }
+    
+    stage('DeployintoTomcat'){
+       // deploy adapters: [tomcat9(credentialsId: '7f26d85c-00c3-4eab-bd46-3f65aadadc00', path: '', url: 'http://15.207.84.117:8080/')], contextPath: null, war: '**/maven-web-application.war'
+    sshagent(['69abac74-4ddd-4c5b-a850-8e545b0eabc4']) {
+   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.42.82:/opt/tomcat9/webapps/"    
+    }
+    }
+}//closing node
