@@ -1,7 +1,8 @@
 
 node{ 
 try {
-    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([cron('* * * * * ')])])
+slackNotifications('STARTED')
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([cron('* * * * * ')])])
     def mavenHome = tool name: 'maven 3.8.6'//variable declaration for maven homepath
 
     echo "The JobName is: ${env.JOB_NAME}" 
